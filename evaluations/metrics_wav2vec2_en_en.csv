@@ -1,0 +1,5 @@
+model,lang,file,wer_raw,cer_raw,wer_norm,cer_norm,ref_words_raw,hyp_words_raw,ref_words_norm,hyp_words_norm
+wav2vec2_en,en,Generative-AI-in-a-Nutshell-how-to-survive-and-thrive-in-the-age-of-AI.txt,0.9994275901545506,0.8355079681274901,0.6672222222222223,0.24827445165908277,3494,3504,3600,3522
+wav2vec2_en,en,Introduction_to_Agile_Methodologies___Google_Project_Management_Certificate__BaH04m_fS1c_.txt,1.0308898109727984,0.831926808107895,0.33018443544759335,0.08903007881614927,2169,2240,2223,2249
+wav2vec2_en,en,Understanding_Thermal_Radiation.txt,1.004725085910653,0.8548949804200783,0.44898819561551434,0.153991154933662,2328,2340,2372,2344
+wav2vec2_en,en,What_is_sustainable_tourism__Why_sustainable_tourism_management_is_so_important__kgAHZHkMTQU_.txt,1.0338849487785657,0.8700454043440913,0.7447633824670287,0.29361118043424006,1269,1315,1289,1315

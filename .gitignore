@@ -1,0 +1,47 @@
+
+# local keys / credentials
+Users
+Users.pub
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.egg-info/
+dist/
+build/
+
+# Envs
+.venv/
+venv/
+env/
+wav2vec2-exp/.venv/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+
+# Outputs / artifacts (isteğe bağlı, kendi klasörlerine göre düzenle)
+outputs/
+*.wav
+*.mp3
+*.mp4
+
+# Logs
+*.log
+
+# Envs
+.venv/
+**/.venv/
+venv/
+**/venv/
+
+.venv/
+**/.venv/
+venv/
+**/venv/
+
+# Secrets
+.env

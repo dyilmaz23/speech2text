@@ -1,0 +1,1 @@
+Aşağıdaki metnin genel bağlamını dikkate alarak, metinde geçen ve alan bilgisi gerektiren terminolojik kavramları belirle. Her bir terimi, konuya yeni başlayan bir kullanıcı için kısa, açık ve bağlamla uyumlu şekilde açıkla. Gereksiz teknik detaylardan kaçın.

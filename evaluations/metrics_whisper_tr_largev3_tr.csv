@@ -1,0 +1,4 @@
+model,lang,file,wer_raw,cer_raw,wer_norm,cer_norm,ref_words_raw,hyp_words_raw,ref_words_norm,hyp_words_norm
+whisper_tr_largev3,tr,Turist_Rehberleri_ic_in_Kapsamlı_Turizm_Eg_itimi.txt,0.3831967213114754,0.09746848416521471,0.4422262552934059,0.10281072993480816,1464,1474,1653,1512
+whisper_tr_largev3,tr,VERI__BI_LI_MI__NEDI_R__VERI__BI_LI_MI_NE_GI_RI_S___PYTHON_DERSLERI_.txt,0.4200884396715098,0.10550060732257505,0.45589072282299375,0.10847637586267918,1583,1611,1757,1662
+whisper_tr_largev3,tr,proje_yo_netimi.txt,0.5975903614457831,0.237374769985688,0.6374558303886926,0.24047843877872208,1245,1349,1415,1375

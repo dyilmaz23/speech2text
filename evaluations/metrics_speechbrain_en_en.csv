@@ -1,0 +1,5 @@
+model,lang,file,wer_raw,cer_raw,wer_norm,cer_norm,ref_words_raw,hyp_words_raw,ref_words_norm,hyp_words_norm
+speechbrain_en,en,Generative-AI-in-a-Nutshell-how-to-survive-and-thrive-in-the-age-of-AI.txt,1.2561534058385804,1.0436254980079682,0.4247222222222222,0.30584385704790634,3494,4442,3600,4521
+speechbrain_en,en,Introduction_to_Agile_Methodologies___Google_Project_Management_Certificate__BaH04m_fS1c_.txt,1.255878284923928,1.0548939190787916,0.3265856950067476,0.2566350329741033,2169,2731,2223,2769
+speechbrain_en,en,Understanding_Thermal_Radiation.txt,1.2852233676975946,1.096618013527946,0.44097807757166946,0.3166823751178134,2328,2998,2372,3033
+speechbrain_en,en,What_is_sustainable_tourism__Why_sustainable_tourism_management_is_so_important__kgAHZHkMTQU_.txt,1.1875492513790387,1.0096944410357098,0.3351435221101629,0.21350137259795357,1269,1512,1289,1518
