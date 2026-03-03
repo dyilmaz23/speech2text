@@ -14,25 +14,57 @@ def normalize_term(t: str) -> str:
     t = re.sub(r"\s+", " ", t)
     return t
 
-def parse_terms_numbered_list(text: str) -> dict:
+def parse_terms_flexible(text: str) -> dict:
     """
-    Parses lines like:
-    1. **Term**: explanation...
-    2. Term: explanation...
+    Robust parser for common LLM formats. Supports:
+      - 1. Term: explanation
+      - 1) Term: explanation
+      - - Term: explanation
+      - - **Term**: explanation
+    Also supports multi-line explanations (until next term header).
     """
     terms = {}
-    for line in text.splitlines():
-        line = line.strip()
+    current_term = None
+    current_lines = []
+
+    # term header patterns
+    header_re = re.compile(
+        r"^(?:\s*(?:\d+[\.\)]|\-|\*)\s*)?(.+?)\s*[:\-–]\s*(.*)$"
+    )
+
+    def flush():
+        nonlocal current_term, current_lines
+        if current_term:
+            expl = " ".join([ln.strip() for ln in current_lines if ln.strip()]).strip()
+            if expl:
+                terms[current_term] = expl
+        current_term = None
+        current_lines = []
+
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
         if not line:
             continue
-        m = re.match(r"^\d+\.\s*(.+?)\s*:\s*(.+)$", line)
-        if not m:
+
+        m = header_re.match(line)
+        if m:
+            # start new term
+            flush()
+            raw_term = m.group(1).strip()
+            first_expl = m.group(2).strip()
+
+            term = normalize_term(raw_term)
+            if term:
+                current_term = term
+                if first_expl:
+                    current_lines.append(first_expl)
             continue
-        raw_term = m.group(1).strip()
-        expl = m.group(2).strip()
-        term = normalize_term(raw_term)
-        if term and expl:
-            terms[term] = expl
+
+        # continuation line for current explanation
+        if current_term:
+            current_lines.append(line)
+
+    flush()
     return terms
 
 def main():
@@ -44,6 +76,8 @@ def main():
 
     semantic_root = Path(args.semantic_root)
     refs = json.loads(Path(args.oxford_refs).read_text(encoding="utf-8"))
+    # normalize reference keys once for robust matching
+    refs_norm = {normalize_term(k): v for k, v in refs.items()}
 
     rows = []
     skipped_no_ref = 0
@@ -54,11 +88,11 @@ def main():
         for txt in sorted(model_dir.glob("*.txt")):
             text_id = txt.stem
             content = txt.read_text(encoding="utf-8", errors="replace")
-            terms = parse_terms_numbered_list(content)
+            terms = parse_terms_flexible(content)   
 
             for term, candidate in terms.items():
                 total_terms_seen += 1
-                ref = refs.get(term)
+                ref = refs_norm.get(term)
                 if not ref:
                     skipped_no_ref += 1
                     continue
