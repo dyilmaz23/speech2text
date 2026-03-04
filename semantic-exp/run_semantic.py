@@ -33,7 +33,7 @@ def run_one(client: OpenAI, model: str, system_prompt: str, transcript: str) -> 
         ],
         # Keep deterministic for evaluation comparability:
         temperature=0.2,
-        max_output_tokens=1600,
+        max_output_tokens=3000,
     )
     latency_s = time.time() - t0
 

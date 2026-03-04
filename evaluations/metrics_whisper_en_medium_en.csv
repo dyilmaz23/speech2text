@@ -1,5 +1,0 @@
-model,lang,file,wer_raw,cer_raw,wer_norm,cer_norm,ref_words_raw,hyp_words_raw,ref_words_norm,hyp_words_norm
-whisper_en_medium,en,Generative-AI-in-a-Nutshell-how-to-survive-and-thrive-in-the-age-of-AI.txt,0.067830566685747,0.027589641434262947,0.028333333333333332,0.020093051792013907,3494,3437,3600,3538
-whisper_en_medium,en,Introduction_to_Agile_Methodologies___Google_Project_Management_Certificate__BaH04m_fS1c_.txt,0.027201475334255418,0.005047716696900386,0.002249212775528565,0.0008846710632137687,2169,2174,2223,2222
-whisper_en_medium,en,Understanding_Thermal_Radiation.txt,0.05798969072164949,0.03431826272694909,0.03752107925801012,0.030885231639237294,2328,2266,2372,2315
-whisper_en_medium,en,What_is_sustainable_tourism__Why_sustainable_tourism_management_is_so_important__kgAHZHkMTQU_.txt,0.08037825059101655,0.017793594306049824,0.017067494181536073,0.008235587721487397,1269,1268,1289,1289

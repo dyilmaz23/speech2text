@@ -2,16 +2,41 @@ import argparse
 import json
 import csv
 import re
+import unicodedata
 from pathlib import Path
 
+
 def normalize_term(t: str) -> str:
+    if t is None:
+        return ""
+
+    # unicode normalize (fancy quotes, etc.)
+    t = unicodedata.normalize("NFKC", t)
+
     t = t.strip()
+
     # remove markdown bold like **Term**
     t = t.replace("**", "").strip()
-    # remove parenthetical abbreviations: "Large Language Models (LLMs)" -> "Large Language Models"
+
+    # normalize apostrophes: planck’s -> planck's
+    t = t.replace("’", "'").replace("`", "'")
+
+    # normalize dashes: stefan–boltzmann / stefan—boltzmann -> stefan-boltzmann
+    t = t.replace("–", "-").replace("—", "-")
+
+    # remove parenthetical abbreviations at end:
+    # "Large Language Models (LLMs)" -> "Large Language Models"
     t = re.sub(r"\s*\([^)]*\)\s*$", "", t).strip()
+
+    # strip trailing punctuation (common in LLM outputs)
+    t = re.sub(r"^[\s\.\,\:\;\-\–\—]+|[\s\.\,\:\;\!\?\-\–\—]+$", "", t)
+
+    # lowercase (your main request)
+    t = t.lower()
+
     # unify whitespace
-    t = re.sub(r"\s+", " ", t)
+    t = re.sub(r"\s+", " ", t).strip()
+
     return t
 
 def parse_terms_flexible(text: str) -> dict:
@@ -75,7 +100,8 @@ def main():
     args = ap.parse_args()
 
     semantic_root = Path(args.semantic_root)
-    refs = json.loads(Path(args.oxford_refs).read_text(encoding="utf-8"))
+    refs_raw = json.loads(Path(args.oxford_refs).read_text(encoding="utf-8"))
+    refs = {normalize_term(k): v for k, v in refs_raw.items()}
     # normalize reference keys once for robust matching
     refs_norm = {normalize_term(k): v for k, v in refs.items()}
 
